@@ -198,7 +198,7 @@
   /* ── STATS ── */
   .filter-row { display: flex; gap: 8px; margin-bottom: 10px; align-items: center; }
   .filter-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap; }
-  .filter-select { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-body); font-size: 13px; padding: 8px 10px; appearance: none; -webkit-appearance: none; }
+  .filter-select { flex: 1; background: none; border: none; border-radius: 7px; color: var(--muted); font-family: var(--font-body); font-size: 12px; font-weight: 700; padding: 7px 4px; text-align: center; appearance: none; -webkit-appearance: none; cursor: pointer; }
   .sort-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 12px; font-weight: 600; padding: 7px 12px; cursor: pointer; white-space: nowrap; font-family: var(--font-body); transition: all 0.15s; }
   .sort-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
@@ -1213,9 +1213,15 @@ function renderStats() {
 
   setApp(`<div class="fade-in">
     <div class="section-header"><div class="section-title">PLAYER STATS</div><div class="badge">Full Season</div></div>
-    <div class="filter-row">
-      <select class="filter-select" id="stat-team-select" style="flex:1">${teamOpts}</select>
-      <select class="filter-select" id="stat-conf-select" style="flex:1">${confOpts}</select>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <div class="seg-control" style="flex:1;margin-bottom:0;position:relative">
+        <select class="filter-select" id="stat-team-select" style="width:100%;padding-right:24px">${teamOpts}</select>
+        <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:10px">▾</span>
+      </div>
+      <div class="seg-control" style="flex:1;margin-bottom:0;position:relative">
+        <select class="filter-select" id="stat-conf-select" style="width:100%;padding-right:24px">${confOpts}</select>
+        <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:10px">▾</span>
+      </div>
     </div>
     <div class="seg-control">
       <button class="seg-btn ${isTotals?'active':''}" data-action="set-stat-view" data-view="total">Totals</button>
